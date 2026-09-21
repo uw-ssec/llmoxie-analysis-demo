@@ -1,0 +1,38 @@
+[workspace]
+# Project metadata and basic configuration
+authors = ["Cordero Core <cdcore09@gmail.com>"] # Project authors
+channels = ["https://prefix.dev/conda-forge", "https://prefix.dev/lsetiawan/uw-ssec"] # Conda channels for dependencies
+name = "llmoxie-analysis" # Project name
+platforms = ["osx-arm64", "linux-64", "linux-aarch64"] # Supported platforms for development and deployment
+version = "0.1.0" # Project version
+
+# The environment configurations for different development scenarios
+[environments]
+default = { features = ["docs"], solve-group = "default" } # The default development environment with documentation tooling
+
+# The project dependencies
+[dependencies]
+python = ">=3.11"
+pytest = ">=9.1.1,<10"
+ruff = ">=0.16.7,<0.17"
+python-build = ">=1.6.0,<2"
+hatchling = ">=1.32.3,<2"
+
+# The project dependencies from PyPI
+[pypi-dependencies]
+llmoxie-analysis = { path = ".", editable = true }
+
+# The main project tasks
+[tasks]
+test = { cmd = "pytest", description = "Run the test suite with pytest" }
+lint = { cmd = "ruff check . && ruff format --check .", description = "Lint and check formatting with ruff (no changes made)" }
+build = { cmd = "python -m build --wheel --sdist --no-isolation --outdir dist", description = "Build the wheel and sdist into dist/" }
+
+# Documentation feature for building and previewing the MkDocs site
+[feature.docs.dependencies]
+mkdocs = ">=1.6.0"
+mkdocs-material = ">=9.5.0"
+
+[feature.docs.tasks]
+docs-build = { cmd = "mkdocs build --strict", description = "Build the documentation site, failing on warnings" }
+docs-serve = { cmd = "mkdocs serve", description = "Serve the documentation site locally with live reload" }
