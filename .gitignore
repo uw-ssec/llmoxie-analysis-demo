@@ -1,0 +1,18 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Build outputs (pixi run build, pixi run docs-build)
+dist/
+build/
+*.egg-info/
+site/
+
+# Pixi environments (pixi also writes .pixi/.gitignore; this covers fresh clones)
+.pixi/*
+!.pixi/config.toml
+
+# OS
+.DS_Store
