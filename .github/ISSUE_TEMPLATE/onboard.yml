@@ -22,7 +22,7 @@ body:
         Instructions for the following steps are provided below. Please check them off as you complete them!
 
         - [ ] Pixi installed
-        - [ ] Onboarding run successfully
+        - [ ] Environment installed and checks passing
         - [ ] First PR opened
 
         ### Pre-requisites
@@ -53,19 +53,30 @@ body:
         ### Onboarding Steps
 
         - [ ] Clone the repository and navigate into it
-        - [ ] Run the following command to set up your environment, install dependencies and get the project ready to go
+        - [ ] Install the development environment and dependencies
 
           ```bash
-          pixi run onboard
+          pixi install
+          ```
+
+        - [ ] Install the pre-commit hooks so style checks run on every commit
+
+          ```bash
+          pixi run pre-commit install
+          ```
+
+        - [ ] Confirm the quality gate passes
+
+          ```bash
+          pixi run verify
           ```
 
         - [ ] Validate that the all steps have been completed by making your first commit and first pull request!
 
         ```bash
         git checkout -b onboarding-<your-name>
-        git add --update
-        git commit --message "chore: complete onboarding for <your-name>"
-        gh pr create --title "Onboarding: <your-name>" --body "This is my first PR" --label "onboarding" --web
+        git commit --allow-empty --message "chore: complete onboarding for <your-name>"
+        pixi exec gh pr create --title "Onboarding: <your-name>" --body "This is my first PR" --label "onboarding" --web
         ```
 
         ### Resources
