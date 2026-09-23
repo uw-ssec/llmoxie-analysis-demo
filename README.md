@@ -19,48 +19,45 @@ Install dependencies:
 pixi install
 ```
 
-### Onboarding
+This creates the `default` environment, which includes Python, the development
+tools (pytest, ruff, pre-commit, build, hatchling), the documentation tooling,
+and `llmoxie-analysis` itself as an editable install.
 
-For first-time setup, use the onboarding environment to configure your
-development environment:
-
-```bash
-pixi run -e onboard onboard
-```
-
-This will:
-
-- Install pre-commit hooks in your git repository
-- Set up shell completion for ssec-cli
-- Run the SSEC onboarding process
+See the [Getting Started](docs/getting-started.md) guide for more detail.
 
 ## Project Structure
 
 This project is organized using Pixi features for modular dependency management:
 
-- **`pre-commit`**: Code quality and consistency checks
-- **`gh-cli`**: GitHub CLI for repository interactions
 - **`docs`**: MkDocs Material for building and previewing the documentation site
-- **`onboard`**: Tools for project onboarding and setup
 
 ## Available Environments
 
-- **`default`**: Standard development environment with pre-commit hooks, GitHub
-  CLI, and documentation tooling
-- **`onboard`**: Extended environment including onboarding tools
+- **`default`**: Standard development environment with the test, lint, and build
+  tooling plus the `docs` feature
 
 ## Development
 
-### Using Different Environments
+### Common Tasks
 
-Switch between environments as needed:
+| Task                  | Command                   |
+| --------------------- | ------------------------- |
+| Run the test suite    | `pixi run test`           |
+| Lint and check format | `pixi run lint`           |
+| Build wheel and sdist | `pixi run build`          |
+| Run pre-commit hooks  | `pixi run pre-commit-all` |
+| Run the quality gate  | `pixi run verify`         |
+| Preview the docs      | `pixi run docs-serve`     |
+| Build the docs        | `pixi run docs-build`     |
+
+Run `pixi task list` to see every available task with its description.
+
+### Using the Environment
+
+Open a shell with the environment activated:
 
 ```bash
-# Use default environment
 pixi shell
-
-# Use onboard environment
-pixi shell -e onboard
 ```
 
 ### Adding Dependencies

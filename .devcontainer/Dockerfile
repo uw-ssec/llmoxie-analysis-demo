@@ -34,8 +34,3 @@ ENV SHELL=/bin/bash \
 USER vscode
 
 RUN echo 'eval "$(pixi completion -s bash)"' >> /home/vscode/.bashrc
-
-# Pre-install the coding agent CLIs (Claude Code, Codex, Copilot CLI, OpenCode)
-# during the image build so the devcontainer is ready on attach.
-COPY --chown=vscode:vscode install-agents.sh /tmp/install-agents.sh
-RUN bash /tmp/install-agents.sh && rm -f /tmp/install-agents.sh
