@@ -16,6 +16,10 @@
       }
     }
   },
-  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  // Codespaces prebuilds run onCreateCommand and updateContentCommand (not
+  // postCreateCommand), so the pixi env is baked into the prebuild snapshot.
+  "onCreateCommand": "bash .devcontainer/on-create.sh",
+  // Re-runs on each prebuild refresh so the env tracks pixi.lock changes.
+  "updateContentCommand": "pixi install",
   "remoteUser": "vscode"
 }
