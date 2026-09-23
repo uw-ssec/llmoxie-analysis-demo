@@ -58,62 +58,47 @@ curl -fsSL https://pixi.sh/install.sh | sh
 powershell -ExecutionPolicy ByPass -c "irm -useb https://pixi.sh/install.ps1 | iex"
 ```
 
+### Install the environment
+
+Once Pixi is installed, create the development environment from the repository
+root:
+
+```bash
+pixi install
+```
+
+### Run the checks
+
+Run the quality gate before committing or opening a pull request. It runs every
+pre-commit hook on all files, then the test suite, and must exit with status 0.
+
+```bash
+pixi run verify
+```
+
+Run `pixi task list` to see every available task.
+
 ### Configure pre-commit
 
 PRs will fail style and formatting checks as configured by
 [pre-commit](https://pre-commit.com/), but you can set up your local repository
-such that precommit runs every time you commit. This way, you can fix any errors
-before you send out pull requests!
+such that pre-commit runs every time you commit. This way, you can fix any
+errors before you send out pull requests!
 
 #### Configure pre-commit to run on every commit
 
-Then, once Pixi is installed, run the following command to set up pre-commit
-checks on every commit
-
-```
-pixi run pre-commit-install
+```bash
+pixi run pre-commit install
 ```
 
-#### Manually run pre-commit on non-committed files
+#### Manually run pre-commit on staged files
 
-```
-pixi run pre-commit
+```bash
+pixi run pre-commit run
 ```
 
 #### Manually run pre-commit on all files
 
-```
+```bash
 pixi run pre-commit-all
-```
-
-### Access `ssec` CLI
-
-The `ssec` CLI contains some convenience functions for setting up and working
-with this repository. More information about the tool can be found here:
-https://github.com/uw-ssec/ssec-cli
-
-#### Set up autocompletions
-
-```
-pixi run ssec-setup
-```
-
-#### Run `ssec` command
-
-```
-pixi run ssec <options>
-```
-
-#### Run `ssec` command with autocompletion
-
-Open Pixi shell
-
-```
-pixi shell
-```
-
-Start typing :)
-
-```
-ssec <tab>
 ```
