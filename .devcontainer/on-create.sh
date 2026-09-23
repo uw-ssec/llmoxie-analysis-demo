@@ -7,7 +7,7 @@ GREEN="\033[0;32m"
 BOLD="\033[1m"
 RESET="\033[0m"
 
-STAGE="post-create"
+STAGE="on-create"
 
 say()  { printf "%b\n==> [%s] %s%b\n" "${BOLD}${GREEN}" "${STAGE}" "$*" "${RESET}"; }
 info() { printf "      %s\n" "$*"; }
